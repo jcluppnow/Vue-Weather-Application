@@ -4,6 +4,18 @@
       <div class="search-box"> 
         <input type="text" class="search-bar" placeholder="Search..."/>
       </div>
+
+      <div class="weather-wrap">
+        <div class="location-box">
+          <div class="location">Perth, WA</div>
+          <div class="date">Sunday 27 July 2021</div>
+        </div>
+
+        <div class="weather-box">
+          <div class='temperature'>15°c</div>
+          <div class="weather">Sunny</div>
+        </div>
+      </div>
     </main>
   </div>
 </template>
