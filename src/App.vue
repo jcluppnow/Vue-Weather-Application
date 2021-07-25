@@ -2,7 +2,9 @@
   <div id="app">
     <main>
       <div class="search-box"> 
-        <input type="text" class="search-bar" placeholder="Search..."/>
+        <!-- Use a v-model for two way binding on this input to the data element query. -->
+        <input type="text" class="search-bar" placeholder="Search..." v-model="query"/>
+        {{ query }}
       </div>
 
       <div class="weather-wrap">
@@ -20,17 +22,21 @@
   </div>
 </template>
 
-<script type='text/javascript' src='config.js'/>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import * as myKey from './config.js'
 
 export default {
   name: 'App',
   data () {
     return {
-      api_key: config.MY_KEY
+      api_key: myKey.MY_KEY,
+      url_base: 'https://api.tomorrow.io/v4/',
+      query: '',
+      weather: {}
     }
+  },
+  methods: {
+
   }
 }
 </script>
