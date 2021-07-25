@@ -13,9 +13,9 @@
           />
       </div>
 
-      <div class="weather-wrap">
+      <div class="weather-wrap" v-if="typeof weather.main != 'undefined'">
         <div class="location-box">
-          <div class="location">Perth, WA</div>
+          <div class="location"> {{ weather.name }}, {{ weather.sys.country }} </div>
           <div class="date">Sunday 27 July 2021</div>
         </div>
 
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import * as myKey from './config.js'
+import * as myKey from './config.json'
 
 export default {
   name: 'App',
@@ -46,7 +46,7 @@ export default {
         //If the event equates to the enter key, fetch the weather.
         if (e.key == "Enter")
         {
-          fetch(`${this.api_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`)
+          fetch(`${this.url_base}weather?q=${this.query}&units=metric&appid=${this.api_key}`)
           .then(response => {
             return response.json();
           }).then(this.setResults);
