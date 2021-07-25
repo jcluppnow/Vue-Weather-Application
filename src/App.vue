@@ -3,8 +3,14 @@
     <main>
       <div class="search-box"> 
         <!-- Use a v-model for two way binding on this input to the data element query. -->
-        <input type="text" class="search-bar" placeholder="Search..." v-model="query"/>
-        {{ query }}
+        <!-- v-on is used to fetch weather when any key is pressed. -->
+        <input 
+          type="text" 
+          class="search-bar" 
+          placeholder="Search..." 
+          v-model="query"
+          v-on:keypress="fetchWeather"
+          />
       </div>
 
       <div class="weather-wrap">
@@ -30,13 +36,25 @@ export default {
   data () {
     return {
       api_key: myKey.MY_KEY,
-      url_base: 'https://api.tomorrow.io/v4/',
+      url_base: 'https://api.openweathermap.org/data/2.5/',
       query: '',
       weather: {}
     }
   },
   methods: {
-
+      fetchWeather(e) {
+        //If the event equates to the enter key, fetch the weather.
+        if (e.key == "Enter")
+        {
+          fetch(`${this.api_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`)
+          .then(response => {
+            return response.json();
+          }).then(this.setResults);
+        }
+      },
+      setResults(results) {
+        this.weather = results;
+      }
   }
 }
 </script>
