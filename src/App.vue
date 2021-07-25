@@ -1,5 +1,6 @@
 <template>
-  <div id="app">
+  <!-- Sets class to warm or nothing depending on weather. -->
+  <div id="app" :class="typeof weather.main != 'undefined' && weather.main.temp > 16 ? 'warm' : ''">
     <main>
       <div class="search-box"> 
         <!-- Use a v-model for two way binding on this input to the data element query. -->
@@ -89,6 +90,10 @@ export default {
     background-size: cover;
     background-position: bottom;
     transition: 0.4s;
+  }
+
+  #app.warm {
+    background-image: url('./assets/warm-bg.jpg');
   }
 
   main {
