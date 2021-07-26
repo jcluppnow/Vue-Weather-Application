@@ -31,6 +31,7 @@
 
 <script>
 import * as myKey from './config.json'
+import Vue from 'vue'
 
 export default {
   name: 'App',
@@ -47,9 +48,10 @@ export default {
         //If the event equates to the enter key, fetch the weather.
         if (e.key == "Enter")
         {
-          fetch(`${this.url_base}weather?q=${this.query}&units=metric&appid=${this.api_key}`)
+          Vue.axios.get(`${this.url_base}weather?q=${this.query}&units=metric&appid=${this.api_key}`)
           .then(response => {
-            return response.json();
+            console.log(response);
+            return response.data;
           }).then(this.setResults);
         }
       },
